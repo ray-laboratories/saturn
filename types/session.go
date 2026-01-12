@@ -1,13 +1,22 @@
 package types
 
+import "context"
+
 type Session struct {
-	Token    string
-	Username string
+	Token string
+	User  *User
+	Group *Group
+	App   *App
 }
 
-func NewSession(id, username string) *Session {
+func NewSession(token string, user *User) *Session {
 	return &Session{
-		Token:    id,
-		Username: username,
+		Token: token,
+		User:  user,
 	}
+}
+
+type AuthenticatedContext struct {
+	context.Context
+	*Session
 }

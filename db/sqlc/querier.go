@@ -10,9 +10,9 @@ import (
 )
 
 type Querier interface {
-	GetAccessor(ctx context.Context, username string) (Accessor, error)
-	InsertAccessor(ctx context.Context, arg InsertAccessorParams) (sql.Result, error)
-	UpdateAccessor(ctx context.Context, arg UpdateAccessorParams) (sql.Result, error)
+	GetUser(ctx context.Context, username string) (User, error)
+	InsertUser(ctx context.Context, arg InsertUserParams) (sql.Result, error)
+	UpdateUser(ctx context.Context, arg UpdateUserParams) (sql.Result, error)
 }
 
 var _ Querier = (*Queries)(nil)

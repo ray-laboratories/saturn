@@ -5,9 +5,9 @@ import (
 	"github.com/ray-laboratories/saturn/types"
 )
 
-type AccessorRepository interface {
-	Get(ctx context.Context, username string) (*types.Accessor, error)
-	Create(ctx context.Context, user *types.Accessor) error
+type UserRepository interface {
+	GetByUsername(ctx context.Context, username string) (*types.User, error)
+	Create(ctx context.Context, user *types.User) error
 }
 
 type Hasher interface {

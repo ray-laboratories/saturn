@@ -4,7 +4,7 @@
 
 package db
 
-type Accessor struct {
+type User struct {
 	Username       string `json:"username"`
 	HashedPassword string `json:"hashed_password"`
 }

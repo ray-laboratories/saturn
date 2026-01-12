@@ -10,40 +10,40 @@ import (
 	"database/sql"
 )
 
-const getAccessor = `-- name: GetAccessor :one
-SELECT username, hashed_password FROM accessors WHERE username = ?
+const getUser = `-- name: GetUser :one
+SELECT username, hashed_password FROM users WHERE username = ?
 `
 
-func (q *Queries) GetAccessor(ctx context.Context, username string) (Accessor, error) {
-	row := q.db.QueryRowContext(ctx, getAccessor, username)
-	var i Accessor
+func (q *Queries) GetUser(ctx context.Context, username string) (User, error) {
+	row := q.db.QueryRowContext(ctx, getUser, username)
+	var i User
 	err := row.Scan(&i.Username, &i.HashedPassword)
 	return i, err
 }
 
-const insertAccessor = `-- name: InsertAccessor :execresult
-INSERT INTO accessors (username, hashed_password) VALUES (?, ?)
+const insertUser = `-- name: InsertUser :execresult
+INSERT INTO users (username, hashed_password) VALUES (?, ?)
 `
 
-type InsertAccessorParams struct {
+type InsertUserParams struct {
 	Username       string `json:"username"`
 	HashedPassword string `json:"hashed_password"`
 }
 
-func (q *Queries) InsertAccessor(ctx context.Context, arg InsertAccessorParams) (sql.Result, error) {
-	return q.db.ExecContext(ctx, insertAccessor, arg.Username, arg.HashedPassword)
+func (q *Queries) InsertUser(ctx context.Context, arg InsertUserParams) (sql.Result, error) {
+	return q.db.ExecContext(ctx, insertUser, arg.Username, arg.HashedPassword)
 }
 
-const updateAccessor = `-- name: UpdateAccessor :execresult
-UPDATE accessors SET username = ?, hashed_password = ? WHERE username = ?
+const updateUser = `-- name: UpdateUser :execresult
+UPDATE users SET username = ?, hashed_password = ? WHERE username = ?
 `
 
-type UpdateAccessorParams struct {
+type UpdateUserParams struct {
 	Username       string `json:"username"`
 	HashedPassword string `json:"hashed_password"`
 	Username_2     string `json:"username_2"`
 }
 
-func (q *Queries) UpdateAccessor(ctx context.Context, arg UpdateAccessorParams) (sql.Result, error) {
-	return q.db.ExecContext(ctx, updateAccessor, arg.Username, arg.HashedPassword, arg.Username_2)
+func (q *Queries) UpdateUser(ctx context.Context, arg UpdateUserParams) (sql.Result, error) {
+	return q.db.ExecContext(ctx, updateUser, arg.Username, arg.HashedPassword, arg.Username_2)
 }

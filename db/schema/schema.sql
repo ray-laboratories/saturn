@@ -1,4 +1,4 @@
-CREATE TABLE accessors (
+CREATE TABLE users (
     username TEXT NOT NULL UNIQUE PRIMARY KEY,
     hashed_password TEXT NOT NULL
 )

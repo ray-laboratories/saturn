@@ -1,8 +1,8 @@
--- name: GetAccessor :one
-SELECT * FROM accessors WHERE username = ?;
+-- name: GetUser :one
+SELECT * FROM users WHERE username = ?;
 
--- name: InsertAccessor :execresult
-INSERT INTO accessors (username, hashed_password) VALUES (?, ?);
+-- name: InsertUser :execresult
+INSERT INTO users (username, hashed_password) VALUES (?, ?);
 
--- name: UpdateAccessor :execresult
-UPDATE accessors SET username = ?, hashed_password = ? WHERE username = ?;
+-- name: UpdateUser :execresult
+UPDATE users SET username = ?, hashed_password = ? WHERE username = ?;
