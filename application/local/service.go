@@ -38,11 +38,11 @@ func NewAuthService(userRepository AccessorRepository, hasher Hasher, tokenizer 
 
 var defAuthService *AuthService
 
-func NewDefaultAuthService() *AuthService {
+func NewDefaultAuthService(path string) *AuthService {
 	if defAuthService != nil {
 		return defAuthService
 	}
-	db, err := sql.Open("sqlite", "./app.db")
+	db, err := sql.Open("sqlite", path)
 	if err != nil {
 		log.Fatal(err)
 	}

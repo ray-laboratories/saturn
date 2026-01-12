@@ -23,3 +23,10 @@ go.work.sum
 
 # env file
 .env
+.idea/dataSources.xml
+.idea/dictionaries/project.xml
+/.idea
+.idea/dataSources.xml
+.idea/dataSources.xml
+*.db
+*.db
